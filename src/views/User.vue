@@ -1,8 +1,9 @@
 <template>
   <div>
     <h3>{{ titulo }}</h3>
-    <hr />
-    <table class="table">
+    <h4>Id : {{ this.$route.params.id }}</h4>
+    <br />
+    <table class="content-table">
       <thead>
         <tr>
           <th scope="col">Id</th>
@@ -15,15 +16,12 @@
           <td>{{ userPost.id }}</td>
           <td>{{ userPost.title }}</td>
           <td>{{ userPost.body }}</td>
-
-          <td></td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
 <script lang="ts">
-// import { defineComponent } from '@vue/composition-api'
 import axios from "axios";
 
 export default {
@@ -44,21 +42,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
-
-th,
-td {
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-</style>

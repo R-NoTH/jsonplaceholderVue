@@ -1,19 +1,17 @@
 <template>
-  <div >
+  <div>
     <ramdom-posts-component></ramdom-posts-component>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import RamdomPostsComponent from '../components/RamdomPostsComponent.vue'
+import RamdomPostsComponent from "../components/RamdomPostsComponent.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     RamdomPostsComponent,
-  }
-}
+  },
+};
 </script>
-
-    PostsComponent
