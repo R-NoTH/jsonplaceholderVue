@@ -7,43 +7,39 @@
           <th scope="col">Id</th>
           <th scope="col">Title</th>
           <th scope="col">Body</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="post in postsRamdom" :key="post.id">
+        <tr v-for="post in posts" :key="post.id">
           <td>{{ post.id }}</td>
           <td>{{ post.title }}</td>
           <td>{{ post.body }}</td>
+          <td>
+            <button class="botonVer" @click="goToPost(post.userId)">Ver</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
-<script>
+<script scoped>
 import postsService from "@/services/postsService.js";
 
 export default {
-  name: "RamdomPosts",
+  name: "Posts",
   created() {
     postsService.get().then((posts) => (this.posts = posts.data));
   },
   data() {
     return {
       posts: [],
-      titulo: "Lista de Post Ramdom",
+      titulo: "Lista de Todos los Post ",
     };
   },
-  methods: {},
-  computed: {
-    postsRamdom() {
-      let arrayPosts = this.posts;
-      // Desordena el Array que esta guardado en arrayPosts.
-      const arrayDesordenado = arrayPosts.sort(
-        () => Math.random() - Math.random()
-      );
-      // Obtiene una submatriz de los primeros n elementos después de mezclarlos
-      let selected = arrayDesordenado.slice(0, 5);
-      return selected;
+  methods: {
+    goToPost(id) {
+      this.$router.push({ name: "Post", params: { id } });
     },
   },
 };
@@ -52,7 +48,7 @@ export default {
 .table {
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%;
+  width: 50%;
   border: 1px solid #ddd;
 }
 
@@ -64,5 +60,21 @@ td {
 
 tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+.botonVer {
+  color: #31ac83 !important;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 0.5em 1.2em;
+  background: rgba(0, 0, 0, 0);
+  border: 2px solid;
+  border-color: #31ac91;
+  transition: all 0.7s ease;
+  position: relative;
+}
+.botonVer:hover {
+  background: #31ac7d;
+  color: #fff !important;
 }
 </style>
