@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <h3>{{ titulo }}</h3>
-    <table class="table">
+    <table class="content-table">
       <thead>
         <tr>
           <th scope="col">Id</th>
@@ -11,7 +11,9 @@
       </thead>
       <tbody>
         <tr v-for="post in postsRamdom" :key="post.id">
-          <td>{{ post.id }}</td>
+          <td>
+            <b>{{ post.id }}</b>
+          </td>
           <td>{{ post.title }}</td>
           <td>{{ post.body }}</td>
         </tr>
@@ -49,20 +51,45 @@ export default {
 };
 </script>
 <style scoped>
-.table {
+.content-table {
+  width: 60%;
   border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
 }
 
-th,
-td {
+.content-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  /* text-align: center; */
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
   text-align: left;
-  padding: 8px;
+}
+/*  */
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
 }
 </style>
